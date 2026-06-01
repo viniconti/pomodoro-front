@@ -1,0 +1,30 @@
+:root {
+  --color00: #000000;
+  --color01: #0a0a0a;
+  --color11: #ffffff;
+  --color1: #960000;
+  --color2: #690000;
+  --color3: #390000;
+  --color4: #190000;
+  --color5: #171717;
+  --color6: #FFD0B9;
+  --color7: #FF6200;
+  --color8: #6C0000;
+  --color9: #930000;
+}
+
+body {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
