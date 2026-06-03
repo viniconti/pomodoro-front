@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Allerta, Anuphan } from "next/font/google";
 import "./globals.css";
-import "./styles/left-side.css"
-import "./styles/right-side.css"
 
 const allerta = Allerta({
   variable: "--font-allerta",

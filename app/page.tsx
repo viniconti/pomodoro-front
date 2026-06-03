@@ -4,6 +4,8 @@ import { Mail } from "lucide-react";
 import { Lock } from "lucide-react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import "./styles/login-left-side.css"
+import "./styles/login-right-side.css"
 
 export default function Home() {
   return (
