@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="pt-br"
       className={`${allerta.variable} ${anuphan.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
