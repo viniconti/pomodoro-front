@@ -3,9 +3,9 @@
 import { Mail } from "lucide-react";
 import { Lock } from "lucide-react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import "./styles/login-left-side.css"
 import "./styles/login-right-side.css"
+import Button from "./components/button";
 
 export default function Home() {
   return (
@@ -55,10 +55,7 @@ export default function Home() {
               e produtividade em suas atividades
             </h3>
           </div>
-          <button className="button-right-box">
-            Registrar-se
-            <ArrowRight size={20} color="#FFFFFF" />
-          </button>
+          <Button />
         </div>
       </div>
       
