@@ -1,5 +1,182 @@
 .left-side-container {
+  flex: 1;
   height: 100vh;
-  width: 117vh;
   background-color: var(--color5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 64px;
+  gap: 0;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.logo-label {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color11);
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+.h1-left-side {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--color11);
+  text-align: center;
+  margin-bottom: 8px;
+  font-family: var(--font-allerta, sans-serif);
+}
+
+.h3-left-side {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  margin-bottom: 36px;
+  font-family: var(--font-allerta, sans-serif);
+  letter-spacing: 0.3px;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.input-email,
+.input-password {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  width: 100%;
+}
+
+.input-email input,
+.input-password input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color11);
+  font-size: 15px;
+  font-family: var(--font-anuphan, sans-serif);
+  width: 100%;
+}
+
+.input-email input::placeholder,
+.input-password input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.remember-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 28px;
+}
+
+.remember-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember-left input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color1);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.remember-left label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  user-select: none;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: var(--color7);
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+
+.forgot-password:hover {
+  opacity: 0.8;
+}
+
+.button-enter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--color1);
+  color: var(--color11);
+  width: 100%;
+  max-width: 400px;
+  height: 52px;
+  border-radius: 12px;
+  border: none;
+  font-size: 17px;
+  font-weight: 400;
+  font-family: var(--font-anuphan, sans-serif);
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: background-color 0.2s;
+  margin-bottom: 20px;
+}
+
+.button-enter:hover {
+  background-color: var(--color9);
+}
+
+.register-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.register-row p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.register-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color11);
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+
+.register-link:hover {
+  opacity: 0.7;
 }

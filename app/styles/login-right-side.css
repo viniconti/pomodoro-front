@@ -1,7 +1,12 @@
 .right-side-container {
+  width: 45%;
+  min-width: 420px;
   height: 100vh;
-  width: 92vh;
   background: linear-gradient(to bottom right, var(--color1), var(--color4));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .right-box {
@@ -10,57 +15,68 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 90px;
+  gap: 80px;
   height: 100%;
   width: 100%;
+  padding: 48px;
+}
 
-  .top-right-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-  }
+.top-right-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
 
-  .h1-right-box,
-  .h3-right-box {
-    color: var(--color11);
-    font-family: var(--font-allerta);
-    letter-spacing: 0.5px;
-    line-height: 1.4;
-  }
-  .h3-right-box {
-    font-size: 24px;
-    font-weight: 100;
-    opacity: 0.8;
-    max-width: 75%;
-  }
-  .h1-right-box {
-    font-size: 34px;
-    font-weight: 200;
-  }
+.h1-right-box {
+  color: var(--color11);
+  font-family: var(--font-allerta, sans-serif);
+  font-size: 34px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
 
-  .trave-right-box {
-    height: 5px;
-    width: 90px;
-    border-radius: 20px;
-    background-color: var(--color11);
-  }
+.trave-right-box {
+  height: 5px;
+  width: 90px;
+  border-radius: 20px;
+  background-color: var(--color11);
+  opacity: 0.9;
+}
 
-  .button-right-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-anuphan);
-    font-size: 19px;
-    font-weight: 200;
-    background-color: var(--color01);
-    color: var(--color11);
-    width: 440px;
-    height: 52px;
-    border-radius: 15px;
-    border-style: none;
-  }
+.h3-right-box {
+  color: var(--color11);
+  font-family: var(--font-allerta, sans-serif);
+  font-size: 22px;
+  font-weight: 100;
+  opacity: 0.8;
+  line-height: 1.5;
+  max-width: 78%;
+  letter-spacing: 0.3px;
+}
+
+.button-right-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-anuphan, sans-serif);
+  font-size: 18px;
+  font-weight: 200;
+  background-color: var(--color01);
+  color: var(--color11);
+  width: 420px;
+  height: 54px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s;
+}
+
+.button-right-box:hover {
+  opacity: 0.85;
 }
