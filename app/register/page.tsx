@@ -1,66 +1,173 @@
-"use client";
-
-import { Mail } from "lucide-react";
-import { Lock } from "lucide-react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import "./styles/register-left-side.css"
-import "./styles/register-right-side.css"
+import "./styles/register-left-side.css";
+import "./styles/register-right-side.css";
 
 export default function Register() {
     return (
-        <div className="container">
-            {/* LEFT SIDE CONTAINER */}
-            <div className="left-side-container">
+        <main className="container">
 
-                <Image
-                    src="/pomodoro.png"
-                    alt="Pomodoro"
-                    width={160}
-                    height={160}
-                />
+            {/* LADO ESQUERDO */}
+            <section className="left-side-container">
 
-                <h1 className="h1-left-side">Crie a sua conta</h1>
-                <h3 className="h3-left-side">Preencha os dados abaixo para se regitrar</h3>
+                <div className="left-content">
 
-                <div className="inputs-container">
-                    <div className="input-email">
-                        <Mail size={20} color="#FFD0B9" />
-                        <input placeholder="seuemail@gmail.com" type="email" />
-                    </div>
+                    <Image
+                        src="/pomodoro.png"
+                        alt="Logo Pomodoro"
+                        width={160}
+                        height={160}
+                        className="logo"
+                    />
 
-                    <div className="input-password">
-                        <Lock size={20} color="#FFD0B9" />
-                        <input placeholder="Sua senha" type="password" />
-                    </div>
+                    <h1 className="h1-left-side">
+                        Crie sua conta aqui
+                    </h1>
 
-                    <div className="input-confirm-password">
-                        <Lock size={20} color="#FFD0B9" />
-                        <input placeholder="Confirme sua senha" type="password" />
-                    </div>
+                    <p className="h3-left-side">
+                        Entra na sua conta para continuar
+                    </p>
+
+                    <form className="register-form">
+
+                        <div className="inputs-container">
+
+                            <div className="input-group">
+
+                                <label htmlFor="email">
+                                    E-mail
+                                </label>
+
+                                <div className="input-box">
+
+                                    <span className="input-icon">
+                                        ✉
+                                    </span>
+
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        placeholder="seuemail@gmail.com"
+                                        required
+                                    />
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="input-group">
+
+                                <label htmlFor="senha">
+                                    Senha
+                                </label>
+
+                                <div className="input-box">
+
+                                    <span className="input-icon">
+                                        ♙
+                                    </span>
+
+                                    <input
+                                        id="senha"
+                                        type="password"
+                                        placeholder="Sua senha"
+                                        required
+                                    />
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="input-group">
+
+                                <label htmlFor="confirmar-senha">
+                                    Confirmar senha
+                                </label>
+
+                                <div className="input-box">
+
+                                    <span className="input-icon">
+                                        ♙
+                                    </span>
+
+                                    <input
+                                        id="confirmar-senha"
+                                        type="password"
+                                        placeholder="Sua senha"
+                                        required
+                                    />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            className="button-left-side"
+                        >
+                            Cadastrar
+                            <span>→</span>
+                        </button>
+
+                    </form>
+
+
+                    <p className="login-left">
+                        Já tem uma conta?
+
+                        <a href="/login">
+                            Entrar
+                        </a>
+                    </p>
+
                 </div>
 
-                <button className="button-left-side">Cadastrar  <ArrowRight size={20} color="#FFFFFF" /></button>
-            </div>
+            </section>
 
-            {/* RIGHT SIDE CONTAINER */}
-            <div className="right-side-container">
+
+            {/* LADO DIREITO */}
+            <section className="right-side-container">
+
                 <div className="right-box">
-                    <div className="top-right-box">
-                        <h1 className="h1-right-box">Olá, bem vindo ao Pomodoro!</h1>
-                        <div className="trave-right-box"></div>
-                        <h3 className="h3-right-box">
-                            Organize sua rotina e gerencie o seu tempo tendo maior eficiência
-                            e produtividade em suas atividades
-                        </h3>
-                    </div>
-                    <button className="button-right-box">
-                        Ja tem uma conta? <strong>Entrar</strong>
-                        <ArrowRight size={20} color="#FFFFFF" />
-                    </button>
-                </div>
-            </div>
 
-        </div>
-    )
+                    <div className="top-right-box">
+
+                        <h1 className="h1-right-box">
+                            Olá, Bem vindo ao Pomodoro!
+                        </h1>
+
+                        <div className="trave-right-box"></div>
+
+                        <p className="h3-right-box">
+                            Organize sua rotina e gerencie o seu tempo
+                            tendo maior eficiência e produtividade em suas
+                            atividades
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="/login"
+                        className="button-right-box"
+                    >
+                        <span>
+                            Já tem uma conta? <strong>Entrar</strong>
+                        </span>
+
+                        <span className="arrow">
+                            →
+                        </span>
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+    );
 }
