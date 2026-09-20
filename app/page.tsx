@@ -16,11 +16,12 @@ export default function Home() {
             width={160}
             height={160}
           />
-          <span className="logo-label">pomodoro</span>
         </div>
 
-        <h1 className="h1-left-side">Bem-vindo de volta</h1>
-        <h3 className="h3-left-side">Entra na sua conta para continuar</h3>
+        <div className="container-top">
+          <h1 className="h1-left-side">Bem-vindo de volta</h1>
+          <h3 className="h3-left-side">Entra na sua conta para continuar</h3>
+        </div>
 
         <LoginForm />
       </div>

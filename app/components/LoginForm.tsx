@@ -16,6 +16,8 @@ export default function LoginForm() {
 
   return (
     <div className="inputs-container">
+
+      <label className="email-label" htmlFor="Email">Email</label>
       <div className="input-email">
         <Mail size={20} color="#FFD0B9" />
         <input
@@ -26,6 +28,7 @@ export default function LoginForm() {
         />
       </div>
 
+      <label className="password-label" htmlFor="Password">Senha</label>
       <div className="input-password">
         <Lock size={20} color="#FFD0B9" />
         <input
