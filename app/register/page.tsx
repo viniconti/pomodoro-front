@@ -37,9 +37,7 @@ export default function Register() {
   return (
     <main className="container">
       {/* LADO ESQUERDO */}
-      <section
-        className="left-side-container"
-      >
+      <section className="left-side-container">
         <div className="left-content">
           <Image
             src="/pomodoro.png"
@@ -51,7 +49,9 @@ export default function Register() {
 
           <h1 className="h1-left-side">Crie sua conta aqui</h1>
 
-          <p className="h3-left-side">Entra na sua conta para continuar</p>
+          <p className="h3-left-side">
+            Entra na sua conta para continuar
+          </p>
 
           <form className="register-form">
             <div className="inputs-container">
@@ -103,7 +103,9 @@ export default function Register() {
               </div>
 
               <div className="input-group">
-                <label htmlFor="confirmar-senha">Confirmar senha</label>
+                <label htmlFor="confirmar-senha">
+                  Confirmar senha
+                </label>
 
                 <div className="input-box">
                   <Lock size={20} color="#FFD0B9" />
@@ -112,7 +114,9 @@ export default function Register() {
                     placeholder="confirme sua senha"
                     type="password"
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onChange={(e) =>
+                      setConfirmPassword(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -130,7 +134,7 @@ export default function Register() {
 
           <p className="login-left">
             Já tem uma conta?
-            <a href="/">Entrar</a>
+            <a href="/login">Entrar</a>
           </p>
         </div>
       </section>
@@ -139,17 +143,19 @@ export default function Register() {
       <section className="right-side-container">
         <div className="right-box">
           <div className="top-right-box">
-            <h1 className="h1-right-box">Olá, Bem vindo ao Pomodoro!</h1>
+            <h1 className="h1-right-box">
+              Olá, Bem vindo ao Pomodoro!
+            </h1>
 
             <div className="trave-right-box"></div>
 
             <p className="h3-right-box">
-              Organize sua rotina e gerencie o seu tempo tendo maior eficiência
-              e produtividade em suas atividades
+              Organize sua rotina e gerencie o seu tempo tendo maior
+              eficiência e produtividade em suas atividades
             </p>
           </div>
 
-          <a href="/" className="button-right-box">
+          <a href="/login" className="button-right-box">
             <span>
               Já tem uma conta? <strong>Entrar</strong>
             </span>

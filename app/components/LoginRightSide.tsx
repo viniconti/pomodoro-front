@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import "../styles/login-right-side.css";
+import "../login/styles/login-right-side.css";
 
 export default function LoginRightSide() {
   return (

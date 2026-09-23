@@ -2,22 +2,34 @@
 
 import { useState } from "react";
 import { Mail, Lock, ArrowRight } from "lucide-react";
-import "../styles/login-left-side.css";
+import "../login/styles/login-right-side.css";
+import { api } from "../services/api";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-  function handleSubmit() {
-    console.log({email, password, remember});
-    // aqui vai a chamada pro backend futuramente
+  async function handleSubmit() {
+    try {
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
+
+      alert("Login efetuado com sucesso!");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao fazer login");
+    }
   }
 
   return (
     <div className="inputs-container">
-
-      <label className="email-label" htmlFor="Email">Email</label>
+      <label className="email-label" htmlFor="Email">
+        Email
+      </label>
       <div className="input-email">
         <Mail size={20} color="#FFD0B9" />
         <input
@@ -28,7 +40,9 @@ export default function LoginForm() {
         />
       </div>
 
-      <label className="password-label" htmlFor="Password">Senha</label>
+      <label className="password-label" htmlFor="Password">
+        Senha
+      </label>
       <div className="input-password">
         <Lock size={20} color="#FFD0B9" />
         <input
@@ -59,7 +73,9 @@ export default function LoginForm() {
 
       <div className="register-row">
         <p>Não tem uma conta ainda?</p>
-        <a href="/register" className="register-link">Registre-se</a>
+        <a href="/register" className="register-link">
+          Registre-se
+        </a>
       </div>
     </div>
   );
