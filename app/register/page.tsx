@@ -14,12 +14,32 @@ export default function Register() {
   const [name, setName] = useState("");
 
   async function handleSubmit() {
+    if (password !== confirmPassword) {
+      alert("As senhas devem ser iguais");
+      return;
+    }
+
+    try {
+      const response = await api.post("/users", {
+        email,
+        password,
+        name,
+      });
+
+      console.log(response.data);
+      alert("Usuário criado com sucesso!");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao cadastrar o usuário");
+    }
   }
 
   return (
     <main className="container">
       {/* LADO ESQUERDO */}
-      <section className="left-side-container">
+      <section
+        className="left-side-container"
+      >
         <div className="left-content">
           <Image
             src="/pomodoro.png"
@@ -98,7 +118,11 @@ export default function Register() {
               </div>
             </div>
 
-            <button onClick={handleSubmit} type="submit" className="button-left-side">
+            <button
+              onClick={handleSubmit}
+              type="button"
+              className="button-left-side"
+            >
               Cadastrar
               <span>→</span>
             </button>
