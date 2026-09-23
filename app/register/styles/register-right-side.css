@@ -8,12 +8,7 @@
 
     padding: 40px 35px;
 
-    background: linear-gradient(
-        135deg,
-        #b10000 0%,
-        #890000 45%,
-        #430000 100%
-    );
+     background: linear-gradient(to bottom right, var(--color1), var(--color4));
 }
 
 .right-box {
@@ -74,9 +69,9 @@
     gap: 8px;
 
     border-radius: 12px;
-    background-color: rgba(18, 0, 0, 0.88);
+    background-color: var(--color01);
 
-    color: #d9c8c8;
+    color: var(--color02);
     text-decoration: none;
     font-size: 16px;
 
@@ -94,7 +89,7 @@
 }
 
 .button-right-box:hover {
-    background-color: #1f0000;
+    background-color: var(--color00);
     transform: translateY(-1px);
 }
 

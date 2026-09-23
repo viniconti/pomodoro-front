@@ -144,12 +144,7 @@
   font-family: var(--font-anuphan, sans-serif);
   cursor: pointer;
   letter-spacing: 0.4px;
-  transition: background-color 0.2s;
   margin-bottom: 20px;
-}
-
-.button-enter:hover {
-  background-color: var(--color9);
 }
 
 .register-row {
@@ -181,6 +176,7 @@
   opacity: 0.7;
 }
 
-.email-label, .password-label {
+.email-label,
+.password-label {
   color: var(--color11);
 }

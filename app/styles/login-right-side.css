@@ -74,9 +74,9 @@
   border: none;
   cursor: pointer;
   letter-spacing: 0.3px;
-  transition: opacity 0.2s;
+  transition: 0.3s;
 }
 
 .button-right-box:hover {
-  opacity: 0.85;
+  background-color: #000000;
 }

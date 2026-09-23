@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [remember, setRemember] = useState(false);
 
   function handleSubmit() {
-    console.log({ email, password, remember });
+    console.log({email, password, remember});
     // aqui vai a chamada pro backend futuramente
   }
 
@@ -59,7 +59,7 @@ export default function LoginForm() {
 
       <div className="register-row">
         <p>Não tem uma conta ainda?</p>
-        <button className="register-link">Registrar-se</button>
+        <a href="/register" className="register-link">Registre-se</a>
       </div>
     </div>
   );
