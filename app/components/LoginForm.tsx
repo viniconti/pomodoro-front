@@ -4,21 +4,23 @@ import { useState } from "react";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import "../login/styles/login-right-side.css";
 import { api } from "../services/api";
-import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
-  async function handleSubmit() {
+  const router = useRouter();
+
+  async function handleSubmitLogin() {
     try {
       const response = await api.post("/auth/login", {
         email,
         password,
       });
 
-      alert("Login efetuado com sucesso!");
+      router.push("/");
     } catch (error) {
       console.error(error);
       alert("Erro ao fazer login");
@@ -66,7 +68,7 @@ export default function LoginForm() {
         <button className="forgot-password">Esqueceu a senha?</button>
       </div>
 
-      <button className="button-enter" onClick={handleSubmit}>
+      <button className="button-enter" onClick={handleSubmitLogin}>
         Entrar
         <ArrowRight size={20} color="#FFFFFF" />
       </button>

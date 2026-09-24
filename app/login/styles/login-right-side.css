@@ -77,6 +77,10 @@
   transition: 0.3s;
 }
 
+a {
+  text-decoration: none;
+}
+
 .button-right-box:hover {
   background-color: #000000;
 }
