@@ -1,0 +1,1 @@
+export type IActiveTabs = 'focus' | 'report' | 'about-us'

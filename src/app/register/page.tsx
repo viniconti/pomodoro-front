@@ -5,7 +5,7 @@ import "./styles/register-left-side.css";
 import "./styles/register-right-side.css";
 import { Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
-import { api } from "../services/api";
+import { api } from "../../services/api";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -49,9 +49,7 @@ export default function Register() {
 
           <h1 className="h1-left-side">Crie sua conta aqui</h1>
 
-          <p className="h3-left-side">
-            Entra na sua conta para continuar
-          </p>
+          <p className="h3-left-side">Entra na sua conta para continuar</p>
 
           <form className="register-form">
             <div className="inputs-container">
@@ -103,9 +101,7 @@ export default function Register() {
               </div>
 
               <div className="input-group">
-                <label htmlFor="confirmar-senha">
-                  Confirmar senha
-                </label>
+                <label htmlFor="confirmar-senha">Confirmar senha</label>
 
                 <div className="input-box">
                   <Lock size={20} color="#FFD0B9" />
@@ -114,9 +110,7 @@ export default function Register() {
                     placeholder="confirme sua senha"
                     type="password"
                     value={confirmPassword}
-                    onChange={(e) =>
-                      setConfirmPassword(e.target.value)
-                    }
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -143,15 +137,13 @@ export default function Register() {
       <section className="right-side-container">
         <div className="right-box">
           <div className="top-right-box">
-            <h1 className="h1-right-box">
-              Olá, Bem vindo ao Pomodoro!
-            </h1>
+            <h1 className="h1-right-box">Olá, Bem vindo ao Pomodoro!</h1>
 
             <div className="trave-right-box"></div>
 
             <p className="h3-right-box">
-              Organize sua rotina e gerencie o seu tempo tendo maior
-              eficiência e produtividade em suas atividades
+              Organize sua rotina e gerencie o seu tempo tendo maior eficiência
+              e produtividade em suas atividades
             </p>
           </div>
 
