@@ -32,6 +32,8 @@ export default function Home() {
     restart(novoTempo, false);
   }
 
+  
+
   return (
     <div className="container-geral-home">
       {/* navbar-home */}

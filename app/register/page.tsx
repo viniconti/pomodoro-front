@@ -3,9 +3,17 @@
 import Image from "next/image";
 import "./styles/register-left-side.css";
 import "./styles/register-right-side.css";
+
 import { Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { api } from "../services/api";
+
+import {
+  ToastContainer,
+  toast,
+  Bounce,
+} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -27,10 +35,30 @@ export default function Register() {
       });
 
       console.log(response.data);
-      alert("Usuário criado com sucesso!");
+
+      toast.success("Cadastro realizado com sucesso!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Bounce,
+      });
     } catch (error) {
       console.error(error);
-      alert("Erro ao cadastrar o usuário");
+
+      toast.error("Erro ao cadastrar o usuário!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   }
 
@@ -47,7 +75,9 @@ export default function Register() {
             className="logo"
           />
 
-          <h1 className="h1-left-side">Crie sua conta aqui</h1>
+          <h1 className="h1-left-side">
+            Crie sua conta aqui
+          </h1>
 
           <p className="h3-left-side">
             Entra na sua conta para continuar
@@ -55,49 +85,72 @@ export default function Register() {
 
           <form className="register-form">
             <div className="inputs-container">
+
               <div className="input-group">
-                <label htmlFor="email">E-mail</label>
+                <label htmlFor="email">
+                  E-mail
+                </label>
 
                 <div className="input-box">
-                  <Mail size={20} color="#FFD0B9" />
+                  <Mail
+                    size={20}
+                    color="#FFD0B9"
+                  />
 
                   <input
                     placeholder="seuemail@gmail.com"
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) =>
+                      setEmail(e.target.value)
+                    }
                   />
                 </div>
               </div>
 
               <div className="input-group">
-                <label htmlFor="name">Seu nome</label>
+                <label htmlFor="name">
+                  Seu nome
+                </label>
 
                 <div className="input-box">
-                  <User size={20} color="#FFD0B9" />
+                  <User
+                    size={20}
+                    color="#FFD0B9"
+                  />
 
                   <input
                     placeholder="Seu nome"
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) =>
+                      setName(e.target.value)
+                    }
                   />
                 </div>
               </div>
 
               <div className="input-group">
-                <label className="register-password" htmlFor="senha">
+                <label
+                  className="register-password"
+                  htmlFor="senha"
+                >
                   Senha
                 </label>
 
                 <div className="input-box">
-                  <Lock size={20} color="#FFD0B9" />
+                  <Lock
+                    size={20}
+                    color="#FFD0B9"
+                  />
 
                   <input
                     placeholder="Sua senha"
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) =>
+                      setPassword(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -108,18 +161,24 @@ export default function Register() {
                 </label>
 
                 <div className="input-box">
-                  <Lock size={20} color="#FFD0B9" />
+                  <Lock
+                    size={20}
+                    color="#FFD0B9"
+                  />
 
                   <input
                     placeholder="confirme sua senha"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) =>
-                      setConfirmPassword(e.target.value)
+                      setConfirmPassword(
+                        e.target.value
+                      )
                     }
                   />
                 </div>
               </div>
+
             </div>
 
             <button
@@ -134,7 +193,9 @@ export default function Register() {
 
           <p className="login-left">
             Já tem uma conta?
-            <a href="/login">Entrar</a>
+            <a href="/login">
+              Entrar
+            </a>
           </p>
         </div>
       </section>
@@ -150,20 +211,42 @@ export default function Register() {
             <div className="trave-right-box"></div>
 
             <p className="h3-right-box">
-              Organize sua rotina e gerencie o seu tempo tendo maior
-              eficiência e produtividade em suas atividades
+              Organize sua rotina e gerencie o seu
+              tempo tendo maior eficiência e
+              produtividade em suas atividades
             </p>
           </div>
 
-          <a href="/login" className="button-right-box">
+          <a
+            href="/login"
+            className="button-right-box"
+          >
             <span>
-              Já tem uma conta? <strong>Entrar</strong>
+              Já tem uma conta?{" "}
+              <strong>Entrar</strong>
             </span>
 
-            <span className="arrow">→</span>
+            <span className="arrow">
+              →
+            </span>
           </a>
         </div>
       </section>
+
+      {/* NOTIFICAÇÕES */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </main>
   );
 }
