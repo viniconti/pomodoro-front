@@ -3,7 +3,6 @@
 import Image from "next/image";
 import "./styles/register-left-side.css";
 import "./styles/register-right-side.css";
-
 import { Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { api } from "../services/api";
