@@ -9,6 +9,8 @@
 
 > **Observação metodológica:** este relatório foi escrito a partir da leitura do código final e do `git diff` real, não apenas do histórico da conversa. O backend não foi alterado nesta sessão; ele é citado apenas como contraparte das chamadas HTTP.
 
+> **Atualização pós-merge:** após os commits `82b356a` e `6d0ce94`, a aplicação foi migrada de `app/` para `src/app/`. Os caminhos `app/...` citados neste documento refletem a estrutura da época em que o relatório foi escrito; o código atual está em `src/`.
+
 ---
 
 ## 1. Resumo geral

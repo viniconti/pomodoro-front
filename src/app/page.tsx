@@ -29,7 +29,7 @@ export default function Home() {
 
   tempoInicial.setSeconds(tempoInicial.getSeconds() + 25 * 60);
 
-  const { seconds, minutes, isRunning, start, pause, restart } = useTimer({
+  const { seconds, minutes, start, restart } = useTimer({
     expiryTimestamp: tempoInicial,
     autoStart: false,
   });
