@@ -57,6 +57,23 @@
   color: var(--color11);
 }
 
+.logout-home {
+  position: absolute;
+  right: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color11);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.logout-home:hover {
+  color: var(--color7);
+}
+
 .foco-home-container {
   display: flex;
   align-items: center;

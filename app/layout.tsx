@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Allerta, Anuphan } from "next/font/google";
 import "./globals.css";
+import AppProvider from "./context";
 
 const allerta = Allerta({
   variable: "--font-allerta",
@@ -24,11 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-br"
-      className={`${allerta.variable} ${anuphan.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="pt-br" className={`${allerta.variable} ${anuphan.variable}`}>
+      <body>
+        <AppProvider>{children}</AppProvider>
+      </body>
     </html>
   );
 }

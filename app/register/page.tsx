@@ -5,6 +5,8 @@ import "./styles/register-left-side.css";
 import "./styles/register-right-side.css";
 import { Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 import { api } from "../services/api";
 
 import {
@@ -14,50 +16,61 @@ import {
 } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const toastOptions = {
+  position: "bottom-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: false,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "colored",
+  transition: Bounce,
+} as const;
+
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const router = useRouter();
 
   async function handleSubmit() {
-    if (password !== confirmPassword) {
-      alert("As senhas devem ser iguais");
+    if (!name || !email || !password || !confirmPassword) {
+      toast.error("Preencha todos os campos!", toastOptions);
       return;
     }
 
+    if (password !== confirmPassword) {
+      toast.error("As senhas devem ser iguais!", toastOptions);
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
-      const response = await api.post("/users", {
+      await api.post("/users", {
         email,
         password,
         name,
       });
 
-      console.log(response.data);
-
-      toast.success("Cadastro realizado com sucesso!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
-        transition: Bounce,
-      });
+      toast.success("Cadastro realizado com sucesso!", toastOptions);
+      router.push("/login");
     } catch (error) {
-      console.error(error);
+      const status = axios.isAxiosError(error)
+        ? error.response?.status
+        : undefined;
 
-      toast.error("Erro ao cadastrar o usuário!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "colored",
-        transition: Bounce,
-      });
+      const message =
+        status === 409
+          ? "Este e-mail já está cadastrado!"
+          : "Erro ao cadastrar o usuário!";
+
+      toast.error(message, toastOptions);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -184,8 +197,9 @@ export default function Register() {
               onClick={handleSubmit}
               type="button"
               className="button-left-side"
+              disabled={isSubmitting}
             >
-              Cadastrar
+              {isSubmitting ? "Cadastrando..." : "Cadastrar"}
               <span>→</span>
             </button>
           </form>
