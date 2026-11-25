@@ -1,7 +1,9 @@
-export function Report() {
-  return (
-    <div>
-      <h1>Report</h1>
-    </div>
-  );
+import ReportDashboard from "./reports/ReportDashboard";
+
+interface ReportProps {
+  refreshKey?: number;
+}
+
+export function Report({ refreshKey = 0 }: ReportProps) {
+  return <ReportDashboard refreshKey={refreshKey} />;
 }

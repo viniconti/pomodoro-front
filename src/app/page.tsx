@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import { UserCircle2, LogOut } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./styles/home.css";
-import { useEffect, useState } from "react";
+import "./styles/reports.css";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTimer } from "react-timer-hook";
 import Header from "../components/Header";
@@ -12,12 +15,41 @@ import Focus from "../components/Focus";
 import { AboutUs } from "../components/AboutUs";
 import { Report } from "../components/Report";
 import { useAuth } from "../context/auth";
+import { api } from "../services/api";
+
+const CICLO_PADRAO_MINUTOS = 25;
+
+function vencimentoEm(minutos: number) {
+  const data = new Date();
+
+  data.setSeconds(data.getSeconds() + minutos * 60);
+
+  return data;
+}
 
 export default function Home() {
   const [modo, setModo] = useState("pomodoro");
   const [activeTab, setActiveTab] = useState<IActiveTabs>("focus");
+  const [statsVersion, setStatsVersion] = useState(0);
   const { isLoggedIn, isLoading, signOut } = useAuth();
   const router = useRouter();
+
+  const modoRef = useRef(modo);
+  const minutosRef = useRef(CICLO_PADRAO_MINUTOS);
+  const startedAtRef = useRef(new Date());
+  const cicloIniciadoRef = useRef(false);
+  const cicloRegistradoRef = useRef(false);
+  const onExpireRef = useRef<() => void>(() => {});
+
+  const [expiryTimestamp] = useState(() =>
+    vencimentoEm(CICLO_PADRAO_MINUTOS),
+  );
+
+  const { seconds, minutes, isRunning, start, pause, restart } = useTimer({
+    expiryTimestamp,
+    autoStart: false,
+    onExpire: () => onExpireRef.current(),
+  });
 
   useEffect(() => {
     if (!isLoading && !isLoggedIn) {
@@ -25,26 +57,63 @@ export default function Home() {
     }
   }, [isLoading, isLoggedIn, router]);
 
-  const tempoInicial = new Date();
+  const registrarCiclo = useCallback(async () => {
+    const minutos = minutosRef.current;
 
-  tempoInicial.setSeconds(tempoInicial.getSeconds() + 25 * 60);
+    // Pausas não são registradas como tempo de foco.
+    if (modoRef.current !== "pomodoro" || cicloRegistradoRef.current) {
+      restart(vencimentoEm(minutos), false);
+      return;
+    }
 
-  const { seconds, minutes, start, restart } = useTimer({
-    expiryTimestamp: tempoInicial,
-    autoStart: false,
-  });
+    cicloRegistradoRef.current = true;
 
-  function iniciarTimer() {
+    try {
+      await api.post("/cycle-history", {
+        startedAt: startedAtRef.current.toISOString(),
+        finishedAt: new Date().toISOString(),
+      });
+
+      setStatsVersion((version) => version + 1);
+      toast.success("Ciclo Pomodoro registrado!");
+    } catch (error) {
+      cicloRegistradoRef.current = false;
+      console.error("Erro ao registrar o ciclo:", error);
+      toast.error("Não foi possível salvar o ciclo.");
+    } finally {
+      cicloIniciadoRef.current = false;
+      restart(vencimentoEm(minutos), false);
+    }
+  }, [restart]);
+
+  useEffect(() => {
+    onExpireRef.current = registrarCiclo;
+  }, [registrarCiclo]);
+
+  function alternarTimer() {
+    if (isRunning) {
+      pause();
+      return;
+    }
+
+    if (modoRef.current === "pomodoro" && !cicloIniciadoRef.current) {
+      startedAtRef.current = new Date();
+      cicloIniciadoRef.current = true;
+      cicloRegistradoRef.current = false;
+    }
+
     start();
   }
 
   function trocarModo(novoModo: string, minutos: number) {
     setModo(novoModo);
+    modoRef.current = novoModo;
+    minutosRef.current = minutos;
+    startedAtRef.current = new Date();
+    cicloIniciadoRef.current = false;
+    cicloRegistradoRef.current = false;
 
-    const novoTempo = new Date();
-    novoTempo.setSeconds(novoTempo.getSeconds() + minutos * 60);
-
-    restart(novoTempo, false);
+    restart(vencimentoEm(minutos), false);
   }
 
   if (isLoading || !isLoggedIn) {
@@ -87,13 +156,27 @@ export default function Home() {
           minutes={minutes}
           seconds={seconds}
           trocarModo={trocarModo}
-          iniciarTimer={iniciarTimer}
+          isRunning={isRunning}
+          alternarTimer={alternarTimer}
         />
       )}
 
-      {activeTab == "report" && <Report />}
+      {activeTab == "report" && <Report refreshKey={statsVersion} />}
 
-      {activeTab == "about-us" && <AboutUs />}
+      <AboutUs refreshKey={statsVersion} />
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

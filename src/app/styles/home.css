@@ -1,6 +1,11 @@
 .container-geral-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  gap: 40px;
 }
 
 .navbar-home {
@@ -43,6 +48,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .link-home:hover {
@@ -122,7 +128,9 @@
   width: 250px;
   background-color: var(--color7);
   color: var(--color02);
+  border: none;
   border-radius: 15px;
+  font-family: inherit;
   font-size: 20px;
   cursor: pointer;
 }
@@ -148,7 +156,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-    cursor: pointer;
+  cursor: pointer;
 }
 .config-timer-home h3 {
   font-weight: 300;
@@ -162,4 +170,175 @@
   flex-direction: column;
   gap: 15px;
   padding-top: 36px;
+}
+
+
+
+/* CONTAINER PRINCIPAL */
+
+.container-footer {
+  width: 70%;
+  min-height: 280px;
+
+  padding: 35px 45px 25px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px solid rgb(104, 103, 103, 0.3);
+  border-radius: 30px;
+
+  background-color: var(--color12);
+}
+
+/* ÁREA SUPERIOR */
+
+.top-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+
+  width: 100%;
+}
+
+/* COLUNA ESQUERDA */
+
+.left-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.description-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.description-footer p {
+  margin: 0;
+
+  font-size: 15px;
+  color: #a5a5a5;
+  line-height: 1.6;
+}
+
+/* COLUNA CENTRAL */
+
+.mid-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding-left: 20px;
+  gap: 10px;
+}
+
+.mid-footer h3 {
+  margin: 0 0 5px;
+
+  font-size: 18px;
+  font-weight: 500;
+  color: #e5e5e5;
+}
+
+.mid-footer p {
+  margin: 0;
+
+  font-size: 15px;
+  color: #a5a5a5;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* HOVER DA NAVEGAÇÃO */
+
+.mid-footer p:hover {
+  color: #FF6200;
+}
+
+/* COLUNA DIREITA */
+
+.right-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding-left: 20px;
+  gap: 8px;
+}
+
+.right-footer h3 {
+  margin: 0 0 8px;
+
+  font-size: 18px;
+  font-weight: 500;
+  color: #e5e5e5;
+}
+
+/* ESTATÍSTICAS */
+
+.top-right-footer,
+.bottom-right-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.info-footer {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.info-footer h4 {
+  margin: 0;
+
+  font-size: 25px;
+  font-weight: 500;
+  color: #e5e5e5;
+}
+
+.info-footer p {
+  margin: 0;
+
+  font-size: 14px;
+  color: #a5a5a5;
+}
+
+/* LINHA DIVISÓRIA */
+
+.line-footer {
+  width: 100%;
+  height: 1px;
+
+  margin: 2px 0;
+
+  background-color: rgb(104, 103, 103, 0.35);
+}
+
+/* DIREITOS RESERVADOS */
+
+.copyright-footer {
+  margin: 0;
+
+  font-size: 14px;
+  color: #a5a5a5;
+
+  text-align: center;
+}
+
+.left-footer img {
+  display: block;
+  margin-bottom: -85px;
+  margin-top: -30px;
+  margin-left: -56px;
 }

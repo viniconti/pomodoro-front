@@ -1,12 +1,12 @@
 import { AlarmClockCheck, Settings2 } from "lucide-react";
-import { useState } from "react";
-import { FaPlay } from "react-icons/fa";
+import { FaPause, FaPlay } from "react-icons/fa";
 
 interface FocusProps {
   modo: string;
   minutes: number;
   seconds: number;
-  iniciarTimer: () => void;
+  isRunning: boolean;
+  alternarTimer: () => void;
   trocarModo: (novoModo: string, minutos: number) => void;
 }
 
@@ -14,11 +14,10 @@ export default function Focus({
   modo,
   minutes,
   seconds,
-  iniciarTimer,
+  isRunning,
+  alternarTimer,
   trocarModo,
 }: FocusProps) {
-
-  const [isRunning, setIsRunning] = useState(false);
   return (
     <section id="foco" className="foco-home-container">
       <div className="pomodoro-foco">
@@ -57,14 +56,15 @@ export default function Focus({
 
           <span>{String(seconds).padStart(2, "0")}</span>
         </div>
-        <div
-          onClick={() => {
-          iniciarTimer();
-          setIsRunning(true);
-        }}  className="button-timer">
-          <FaPlay size={24} />
-          <h3>{ isRunning ? "Pausar": "Iniciar" }</h3>
-        </div>
+        <button
+          type="button"
+          onClick={alternarTimer}
+          className="button-timer"
+          aria-label={isRunning ? "Pausar timer" : "Iniciar timer"}
+        >
+          {isRunning ? <FaPause size={24} /> : <FaPlay size={24} />}
+          <h3>{isRunning ? "Pausar" : "Iniciar"}</h3>
+        </button>
 
         <div 
         className="config-timer-home">
