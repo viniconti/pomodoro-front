@@ -33,7 +33,8 @@ type ApiErrorResponse = {
 
 function getRegistrationErrorMessage(error: unknown): string {
   if (!axios.isAxiosError(error)) {
-    return "Erro ao cadastrar o usuário!";
+    console.error("[register] erro inesperado:", error);
+    return "Erro inesperado ao cadastrar. Tente novamente.";
   }
 
   if (!error.response) {
@@ -71,11 +72,19 @@ function getRegistrationErrorMessage(error: unknown): string {
     return "Verifique os dados informados e tente novamente.";
   }
 
+  if (status === 401 || status === 403) {
+    return "Acesso negado. Verifique se a página está liberada para acesso.";
+  }
+
+  if (status === 404) {
+    return "Rota de cadastro não encontrada. Verifique NEXT_PUBLIC_API_URL.";
+  }
+
   if (status >= 500) {
     return "Erro interno no servidor. Tente novamente em instantes.";
   }
 
-  return "Erro ao cadastrar o usuário!";
+  return `Erro ao cadastrar o usuário! (status ${status})`;
 }
 
 export default function Register() {
