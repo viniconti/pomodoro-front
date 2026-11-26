@@ -1,5 +1,6 @@
 "use client";
 
+import { AlarmClock, Clock } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { chartCssVariables } from "../../config/chartTheme";
 import { api } from "../../services/api";
@@ -100,6 +101,7 @@ export default function ReportDashboard({
 
       <div className="report-grid">
         <ChartCard
+          icon={AlarmClock}
           title="Pomodoros concluídos"
           total={String(totals.cycles)}
           totalCaption="no período selecionado"
@@ -108,6 +110,7 @@ export default function ReportDashboard({
         </ChartCard>
 
         <ChartCard
+          icon={Clock}
           title="Tempo total de foco"
           total={formatFocus(totals.focusSeconds)}
           totalCaption="no período selecionado"

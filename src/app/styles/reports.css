@@ -66,57 +66,84 @@
 .report-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  column-gap: 36px;
+  row-gap: 24px;
 }
 
 .report-card {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  padding: 24px 28px 20px;
+  min-height: 260px;
+  padding: 18px 20px 14px;
   border: 2px solid var(--chart-border);
-  border-radius: 30px;
+  border-radius: 24px;
   background-color: var(--chart-card);
   box-sizing: border-box;
 }
 
 .report-card-header {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
   gap: 12px;
+}
+
+.report-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 105, 0, 0.22);
+  border-radius: 9px;
+  background-color: rgba(255, 105, 0, 0.14);
+  color: var(--chart-primary);
+}
+
+.report-card-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.report-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
 .report-card-title {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 1.2;
   color: var(--chart-text);
 }
 
 .report-card-total {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 2px;
-  text-align: right;
+  text-align: left;
 }
 
 .report-card-total strong {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 500;
+  line-height: 1.1;
   color: var(--chart-primary);
 }
 
 .report-card-total span {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--chart-muted);
 }
 
 .report-card-chart {
   flex: 1;
-  min-height: 220px;
-  margin-top: 18px;
+  min-height: 190px;
+  margin-top: 14px;
 }
 
 .report-tooltip {
@@ -160,12 +187,23 @@
   }
 
   .report-card {
-    min-height: 260px;
-    padding: 18px;
+    min-height: 250px;
+    padding: 16px;
     border-radius: 20px;
   }
 
+  .report-card-header {
+    gap: 10px;
+  }
+
+  .report-card-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+
   .report-card-chart {
-    min-height: 180px;
+    min-height: 175px;
+    margin-top: 12px;
   }
 }
