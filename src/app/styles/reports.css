@@ -66,8 +66,8 @@
 .report-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 160px;
-  row-gap: 70px;
+  column-gap: 190px;
+  row-gap: 100px;
 }
 
 .report-card {
