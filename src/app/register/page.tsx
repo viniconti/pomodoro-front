@@ -4,7 +4,7 @@ import Image from "next/image";
 import "./styles/register-left-side.css";
 import "./styles/register-right-side.css";
 import { Lock, Mail, User } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { api } from "../../services/api";
@@ -27,6 +27,57 @@ const toastOptions = {
   transition: Bounce,
 } as const;
 
+type ApiErrorResponse = {
+  message?: string | string[];
+};
+
+function getRegistrationErrorMessage(error: unknown): string {
+  if (!axios.isAxiosError(error)) {
+    return "Erro ao cadastrar o usuário!";
+  }
+
+  if (!error.response) {
+    return "Não foi possível conectar ao servidor. Tente novamente mais tarde.";
+  }
+
+  const status = error.response.status;
+  const data = error.response.data as ApiErrorResponse | undefined;
+
+  if (status === 409) {
+    return "Este e-mail já está cadastrado!";
+  }
+
+  if (status === 400) {
+    const messages = Array.isArray(data?.message)
+      ? data.message
+      : data?.message
+        ? [data.message]
+        : [];
+
+    const message = messages.find(Boolean) ?? "";
+
+    if (message.includes("password")) {
+      return "A senha deve ter no mínimo 6 caracteres.";
+    }
+
+    if (message.includes("email")) {
+      return "Informe um e-mail válido.";
+    }
+
+    if (message.includes("name")) {
+      return "Informe seu nome.";
+    }
+
+    return "Verifique os dados informados e tente novamente.";
+  }
+
+  if (status >= 500) {
+    return "Erro interno no servidor. Tente novamente em instantes.";
+  }
+
+  return "Erro ao cadastrar o usuário!";
+}
+
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +87,9 @@ export default function Register() {
 
   const router = useRouter();
 
-  async function handleSubmit() {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
     if (!name || !email || !password || !confirmPassword) {
       toast.error("Preencha todos os campos!", toastOptions);
       return;
@@ -44,6 +97,11 @@ export default function Register() {
 
     if (password !== confirmPassword) {
       toast.error("As senhas devem ser iguais!", toastOptions);
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error("A senha deve ter no mínimo 6 caracteres.", toastOptions);
       return;
     }
 
@@ -59,16 +117,7 @@ export default function Register() {
       toast.success("Cadastro realizado com sucesso!", toastOptions);
       router.push("/login");
     } catch (error) {
-      const status = axios.isAxiosError(error)
-        ? error.response?.status
-        : undefined;
-
-      const message =
-        status === 409
-          ? "Este e-mail já está cadastrado!"
-          : "Erro ao cadastrar o usuário!";
-
-      toast.error(message, toastOptions);
+      toast.error(getRegistrationErrorMessage(error), toastOptions);
     } finally {
       setIsSubmitting(false);
     }
@@ -93,7 +142,7 @@ export default function Register() {
 
           <p className="h3-left-side">Entra na sua conta para continuar</p>
 
-          <form className="register-form">
+          <form className="register-form" onSubmit={handleSubmit}>
             <div className="inputs-container">
 
               <div className="input-group">
@@ -190,8 +239,7 @@ export default function Register() {
             </div>
 
             <button
-              onClick={handleSubmit}
-              type="button"
+              type="submit"
               className="button-left-side"
               disabled={isSubmitting}
             >
