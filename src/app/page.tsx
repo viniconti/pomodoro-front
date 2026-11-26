@@ -10,7 +10,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTimer } from "react-timer-hook";
 import Header from "../components/Header";
-import { IActiveTabs } from "../interfaces/IActiveTabs";
 import Focus from "../components/Focus";
 import { AboutUs } from "../components/AboutUs";
 import { Report } from "../components/Report";
@@ -29,7 +28,6 @@ function vencimentoEm(minutos: number) {
 
 export default function Home() {
   const [modo, setModo] = useState("pomodoro");
-  const [activeTab, setActiveTab] = useState<IActiveTabs>("focus");
   const [statsVersion, setStatsVersion] = useState(0);
   const { isLoggedIn, isLoading, signOut } = useAuth();
   const router = useRouter();
@@ -133,7 +131,7 @@ export default function Home() {
           />
         </a>
 
-        <Header setActiveTab={setActiveTab} />
+        <Header />
 
         <button
           className="logout-home"
@@ -150,18 +148,16 @@ export default function Home() {
         </a>
       </nav>
 
-      {activeTab == "focus" && (
-        <Focus
-          modo={modo}
-          minutes={minutes}
-          seconds={seconds}
-          trocarModo={trocarModo}
-          isRunning={isRunning}
-          alternarTimer={alternarTimer}
-        />
-      )}
+      <Focus
+        modo={modo}
+        minutes={minutes}
+        seconds={seconds}
+        trocarModo={trocarModo}
+        isRunning={isRunning}
+        alternarTimer={alternarTimer}
+      />
 
-      {activeTab == "report" && <Report refreshKey={statsVersion} />}
+      <Report refreshKey={statsVersion} />
 
       <AboutUs refreshKey={statsVersion} />
 

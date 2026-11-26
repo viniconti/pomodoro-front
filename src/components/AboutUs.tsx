@@ -45,7 +45,7 @@ export function AboutUs({ refreshKey = 0 }: AboutUsProps) {
   const minutos = Math.floor((stats.totalFocusSeconds % 3600) / 60);
 
   return (
-    <div className="container-footer">
+    <div id="sobre-nos" className="container-footer">
       <div className="top-footer">
         {/* COLUNA ESQUERDA */}
         <div className="left-footer">

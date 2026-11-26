@@ -1,22 +1,16 @@
-import { IActiveTabs } from "../interfaces/IActiveTabs";
-
-interface HeaderProps {
-  setActiveTab: (value: IActiveTabs) => void;
-}
-
-export default function Header({ setActiveTab }: HeaderProps) {
+export default function Header() {
   return (
     <header className="navbar-home">
       <div className="links-nav-home">
-        <a className="link-home" onClick={() => setActiveTab("focus")}>
+        <a className="link-home" href="#foco">
           Foco
         </a>
 
-        <a className="link-home" onClick={() => setActiveTab("report")}>
+        <a className="link-home" href="#relatorios">
           Relatórios
         </a>
 
-        <a className="link-home">
+        <a className="link-home" href="#sobre-nos">
           Sobre nós
         </a>
       </div>
