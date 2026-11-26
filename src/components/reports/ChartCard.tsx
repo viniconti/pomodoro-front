@@ -20,7 +20,7 @@ export default function ChartCard({
     <article className="report-card">
       <div className="report-card-header">
         <span className="report-card-icon" aria-hidden="true">
-          <Icon size={16} strokeWidth={1.8} />
+          <Icon size={32} strokeWidth={1.8} />
         </span>
 
         <div className="report-card-info">
