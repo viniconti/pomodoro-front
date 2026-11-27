@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { UserCircle2, LogOut } from "lucide-react";
+import { AlarmClockCheck, UserCircle2, LogOut } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/home.css";
@@ -15,6 +15,7 @@ import { AboutUs } from "../components/AboutUs";
 import { Report } from "../components/Report";
 import { useAuth } from "../context/auth";
 import { api } from "../services/api";
+import { playFocusChime, prepareFocusSound } from "../utils/focusSound";
 
 const CICLO_PADRAO_MINUTOS = 25;
 
@@ -66,6 +67,19 @@ export default function Home() {
 
     cicloRegistradoRef.current = true;
 
+    playFocusChime();
+    toast.success(
+      <div className="toast-foco-conteudo">
+        <strong>Pomodoro concluído!</strong>
+        <span>Hora de fazer uma pausa.</span>
+      </div>,
+      {
+        icon: <AlarmClockCheck size={20} strokeWidth={1.8} color="#FF6900" />,
+        className: "toast-pomodoro-concluido",
+        autoClose: 8000,
+      },
+    );
+
     try {
       await api.post("/cycle-history", {
         startedAt: startedAtRef.current.toISOString(),
@@ -73,7 +87,6 @@ export default function Home() {
       });
 
       setStatsVersion((version) => version + 1);
-      toast.success("Ciclo Pomodoro registrado!");
     } catch (error) {
       cicloRegistradoRef.current = false;
       console.error("Erro ao registrar o ciclo:", error);
@@ -100,6 +113,7 @@ export default function Home() {
       cicloRegistradoRef.current = false;
     }
 
+    prepareFocusSound();
     start();
   }
 
